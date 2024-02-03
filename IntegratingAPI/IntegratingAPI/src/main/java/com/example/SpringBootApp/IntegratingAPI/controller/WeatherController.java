@@ -15,13 +15,13 @@ public class WeatherController {
     @Autowired
     WeatherService weatherService;
 
-    @GetMapping(value = "getForecastSummary/")
+    @GetMapping(value = "getForecastSummary/", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody ResponseEntity<Object> getWeatherForecastSummaryByLocationName(@RequestParam("locationName") String locationName){
         return weatherService.getWeatherForecastSummaryByCityName(locationName);
     }
 
-    @GetMapping(value = "getHourlyForecast/")
+    @GetMapping(value = "getHourlyForecast/", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody ResponseEntity<Object> getHourlyForecastByLocationName(@RequestParam("locationName") String locationName){
         return weatherService.getHourlyForecastByCityName(locationName);

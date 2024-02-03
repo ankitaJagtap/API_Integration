@@ -29,6 +29,12 @@ public class WeatherService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Value("${spring.security.user.name}")
+    private String client_id;
+
+    @Value("${spring.security.user.password}")
+    private String client_secret;
+
     public ResponseEntity<Object> getWeatherForecastSummaryByCityName(String location_name) {
         try{
             // Set headers value
@@ -37,8 +43,6 @@ public class WeatherService {
             headers.set("X-RapidAPI-Host", xRapidAPIHost);
 
             // create auth credentials
-            String client_id = UUID.randomUUID().toString();
-            String client_secret = UUID.randomUUID().toString();
             String authStr = client_id + ":" + client_secret;
             String encodedAuthToken  = Base64.getEncoder().encodeToString(authStr.getBytes());
 
